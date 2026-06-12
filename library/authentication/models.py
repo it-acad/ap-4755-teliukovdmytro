@@ -1,7 +1,7 @@
 import re
 import json
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
@@ -19,7 +19,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault('role', 1)  # Зазвичай адмін має роль 1 або окремий прапорець
         return self.create_user(email, password, **extra_fields)
 
-class CustomUser(AbstractBaseUser):
+class CustomUser(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(unique=True, max_length=255)
     first_name = models.CharField(max_length=20, default=None, null=True, blank=True)
     middle_name = models.CharField(max_length=20, default=None, null=True, blank=True)
