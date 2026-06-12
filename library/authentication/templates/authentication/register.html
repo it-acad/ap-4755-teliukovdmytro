@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Реєстрація</title>
+</head>
+<body>
+
+    <h2>Реєстрація користувача</h2>
+
+    <!-- 1. Виправлено блок показу помилок -->
+    {% if error %}
+        <p style="color: red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+
+    <!-- 2. Виправлено action: тепер дані йдуть чітко на маршрут реєстрації -->
+    <form method="POST" action="/auth/register/">
+        {% csrf_token %}
+
+        <label for="first_name">Ім'я:</label><br>
+        <input type="text" id="first_name" name="first_name" required><br><br>
+
+        <label for="last_name">Прізвище:</label><br>
+        <input type="text" id="last_name" name="last_name" required><br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email" required><br><br>
+
+        <label for="password">Пароль:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <!-- 3. Виправлено літеру «Я» та додано зрозумілі назви для ролей -->
+        <label for="role">Роль у системі:</label><br>
+        <select id="role" name="role">
+            <option value="0">Читач (Visitor)</option>
+            <option value="1">Бібліотекар (Librarian)</option>
+        </select><br><br>
+
+        <button type="submit">Створити акаунт</button>
+    </form>
+
+</body>
+</html>

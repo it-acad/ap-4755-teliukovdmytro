@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Вхід</title>
+</head>
+<body>
+
+    <h2>Вхід до бібліотеки</h2>
+    
+    <!-- Перевірте, чи виводиться помилка саме через цю змінну -->
+    {% if error %}
+        <p style="color: red; font-weight: bold;">{{ error }}</p>
+    {% endif %}
+    
+    <!-- Атрибут method має бути СТРОГО POST (великими літерами) -->
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+        <label for="email">Email:</label><br>
+        <!-- Ім'я поля має точно збігатися з тим, що ми пишемо у views.py -->
+        <input type="text" id="email" name="user_login_email" required><br><br>
+        
+        <label for="password">Пароль:</label><br>
+        <input type="password" id="password" name="password" required><br><br>
+        
+        <!-- Кнопка обов'язково повинна мати тип submit -->
+        <button type="submit">Увійти</button>
+    </form>
+    
+    <p>Немає акаунту? <a href="/auth/register/">Зареєструватися</a></p>
+
+</body>
+</html>
+

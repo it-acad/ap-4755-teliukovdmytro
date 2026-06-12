@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title>Мій Профіль</title>
+</head>
+<body>
+
+    <h2>Вітаємо, {{ request.user.first_name }}!</h2>
+    <p>Ваш Email: {{ request.user.email }}</p>
+    
+    <p>Ваша роль: 
+        {% if request.user.role == 1 %}
+            Бібліотекар
+        {% else %}
+            Читач (Visitor)
+        {% endif %}
+    </p>
+    
+    <hr>
+    <p><a href="/auth/logout/">Вийти з системи</a></p>
+
+</body>
+</html>
